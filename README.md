@@ -4,7 +4,7 @@ Modern, premium pizzeria landing page built with **Vite + Preact**. Includes a f
 
 ## Screenshots
 
-> Add the two screenshots to `docs/screenshots/` with these exact names, and they will show here:
+>   `docs/screenshots/` 
 > - `docs/screenshots/home.png`
 > - `docs/screenshots/sections.png`
 
