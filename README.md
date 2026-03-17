@@ -1,12 +1,28 @@
 # Tatia’s Pizzeria
 
-Modern, minimal pizzeria landing page built with Vite + Preact.
+Modern, premium pizzeria landing page built with **Vite + Preact**. Includes a functional cart drawer and a clean component-based structure.
+
+## Screenshots
+
+> Add the two screenshots to `docs/screenshots/` with these exact names, and they will show here:
+> - `docs/screenshots/home.png`
+> - `docs/screenshots/sections.png`
+
+![Home](docs/screenshots/home.png)
+![Sections](docs/screenshots/sections.png)
 
 ## Features
 
-- Premium landing page sections (hero, features, menu, gallery, reviews, footer)
-- Functional cart drawer (add items, change quantities, remove, clear, total)
-- Responsive layout
+- **Landing page**: hero, features, menu, gallery, reviews, visit, footer
+- **Cart drawer**: add items, change quantities, remove, clear, total price
+- **UI polish**: smooth scrolling, interactive gallery lightbox, interactive reviews
+- **Clean structure**: constants, hooks, components, utilities separated
+
+## Tech stack
+
+- **Vite**
+- **Preact** (React-like API)
+- **CSS** (no UI framework)
 
 ## Getting started
 
@@ -16,7 +32,7 @@ Install dependencies:
 npm install
 ```
 
-Run the dev server:
+Start the dev server:
 
 ```bash
 npm run dev
@@ -36,8 +52,11 @@ npm run preview
 
 ## Project structure
 
-- `src/app.jsx`: main page + cart logic
-- `src/App.css`: styling
-- `src/assets/`: images (e.g. `pizza.png`)
+- `src/app.jsx`: app composition (wires constants + components + cart)
+- `src/components/`: UI sections (`Header`, `Hero`, `MenuSection`, etc.)
+- `src/hooks/`: reusable hooks (`useCart`)
+- `src/cart/`: cart UI (`CartPanel`) + cart styles
+- `src/constants/`: app data (`menu`, `features`, `gallery`, `brand`)
+- `src/utils/`: shared utilities (e.g. `fallbackIcon`)
 - `public/`: static files (favicons, etc.)
 
