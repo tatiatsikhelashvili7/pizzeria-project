@@ -46,10 +46,6 @@
   overflow: hidden;
 }
 
-.brandIcon {
-  display: block;
-}
-
 .brandLogoImg {
   width: 100%;
   height: 100%;
@@ -65,9 +61,11 @@
 }
 
 .links {
-  display: none;
+  display: flex;
   gap: 18px;
   align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .links a {
@@ -84,9 +82,10 @@
   color: var(--text-strong);
 }
 
-@media (min-width: 860px) {
-  .links {
-    display: flex;
+@media (max-width: 860px) {
+  .links a {
+    font-size: 13px;
+    padding: 8px 6px;
   }
 }
 
@@ -113,25 +112,6 @@
 
 .btnPrimary:hover {
   background: color-mix(in oklab, var(--text-strong) 92%, black);
-}
-
-.cartBtn {
-  gap: 10px;
-}
-
-.cartBadge {
-  min-width: 22px;
-  height: 22px;
-  padding: 0 7px;
-  border-radius: 999px;
-  background: color-mix(in oklab, var(--bg) 86%, white);
-  color: var(--text-strong);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 900;
-  font-size: 12px;
-  border: 1px solid color-mix(in oklab, var(--text-strong) 18%, var(--border));
 }
 
 .btnGhost {
@@ -316,6 +296,7 @@
 .section {
   padding: 54px 0;
   border-top: 1px solid var(--border);
+  scroll-margin-top: 88px;
 }
 
 .sectionHead h2 {
@@ -497,6 +478,14 @@
   gap: 10px;
 }
 
+.galleryBtn {
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 18px;
+}
+
 .galleryImg {
   width: 100%;
   height: 180px;
@@ -504,6 +493,63 @@
   border-radius: 18px;
   border: 1px solid var(--border);
   box-shadow: var(--shadow-sm);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+  display: block;
+}
+
+.galleryBtn:hover .galleryImg {
+  transform: translateY(-2px);
+  box-shadow: rgba(0, 0, 0, 0.18) 0 14px 24px -18px;
+}
+
+.galleryBtn:focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--text-strong) 40%, var(--khaki));
+  outline-offset: 3px;
+}
+
+.lightboxOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  z-index: 60;
+}
+
+.lightboxPanel {
+  width: min(980px, 100%);
+  max-height: 85svh;
+  position: relative;
+}
+
+.lightboxImg {
+  width: 100%;
+  height: auto;
+  max-height: 85svh;
+  object-fit: contain;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: rgba(0, 0, 0, 0.45) 0 22px 70px -26px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.lightboxClose {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(0, 0, 0, 0.35);
+  color: white;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.lightboxClose:hover {
+  background: rgba(0, 0, 0, 0.5);
 }
 
 @media (min-width: 980px) {
@@ -526,27 +572,83 @@
   }
 }
 
-.quote {
-  margin: 0;
-  background: var(--surface);
+.quoteCard {
+  width: 100%;
+  text-align: left;
   border: 1px solid var(--border);
+  background: var(--surface);
   border-radius: 22px;
-  padding: 18px;
+  padding: 16px 16px 14px;
   box-shadow: var(--shadow-sm);
+  transition: transform 160ms ease, box-shadow 160ms ease,
+    border-color 160ms ease;
+  cursor: pointer;
 }
 
-.quote blockquote {
-  margin: 0;
+.quoteCard:hover {
+  transform: translateY(-2px);
+  box-shadow: rgba(0, 0, 0, 0.18) 0 14px 24px -18px;
+}
+
+.quoteCard.isOpen {
+  border-color: color-mix(in oklab, var(--khaki) 55%, var(--border));
+  box-shadow: rgba(0, 0, 0, 0.24) 0 18px 30px -22px;
+}
+
+.quoteTop {
+  width: 100%;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.quoteCard:focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--text-strong) 40%, var(--khaki));
+  outline-offset: 3px;
+  border-radius: 16px;
+}
+
+.quoteMeta {
+  display: grid;
+  gap: 4px;
+}
+
+.quoteStars {
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: color-mix(in oklab, var(--text-strong) 65%, var(--khaki));
+  font-size: 12px;
+}
+
+.quoteTitle {
+  font-weight: 900;
+  letter-spacing: -0.25px;
+  color: var(--text-strong);
+}
+
+.quoteToggle {
+  font-weight: 850;
+  color: var(--text-strong);
+  background: color-mix(in oklab, var(--bg) 70%, white);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 8px 12px;
+  white-space: nowrap;
+}
+
+.quoteText {
+  margin: 12px 0 0;
   color: var(--text-strong);
   font-weight: 750;
   letter-spacing: -0.2px;
   line-height: 1.45;
 }
 
-.quote figcaption {
+.quoteFooter {
   margin-top: 10px;
   color: var(--text);
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .footer {
@@ -605,201 +707,6 @@
   justify-content: space-between;
   gap: 10px;
   flex-wrap: wrap;
-}
-
-.cartOverlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.35);
-  display: grid;
-  place-items: end;
-  z-index: 50;
-}
-
-.cartPanel {
-  width: min(520px, 100%);
-  height: min(720px, 100svh);
-  background: var(--surface);
-  border-left: 1px solid var(--border);
-  box-shadow: rgba(0, 0, 0, 0.35) 0 18px 60px -24px;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-}
-
-.cartHeader {
-  padding: 18px 18px 14px;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: start;
-  justify-content: space-between;
-  gap: 14px;
-}
-
-.cartTitle {
-  font-family: var(--heading);
-  font-weight: 900;
-  letter-spacing: -0.5px;
-  color: var(--text-strong);
-  font-size: 20px;
-}
-
-.cartSub {
-  margin-top: 6px;
-  font-weight: 650;
-  font-size: 13px;
-}
-
-.iconBtn {
-  width: 40px;
-  height: 40px;
-  border-radius: 14px;
-  border: 1px solid var(--border);
-  background: var(--bg);
-  color: var(--text-strong);
-  font-weight: 900;
-  cursor: pointer;
-}
-
-.iconBtn:hover {
-  background: color-mix(in oklab, var(--bg) 75%, white);
-}
-
-.cartBody {
-  padding: 14px 18px;
-  overflow: auto;
-}
-
-.cartEmpty {
-  height: 100%;
-  display: grid;
-  place-content: center;
-  gap: 12px;
-  text-align: left;
-}
-
-.cartEmptyTitle {
-  font-weight: 850;
-  color: var(--text-strong);
-  letter-spacing: -0.3px;
-}
-
-.cartList {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  gap: 12px;
-}
-
-.cartItem {
-  border: 1px solid var(--border);
-  background: color-mix(in oklab, var(--surface) 80%, var(--bg));
-  border-radius: 18px;
-  padding: 14px;
-}
-
-.cartItemTop {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  align-items: baseline;
-}
-
-.cartItemName {
-  font-weight: 900;
-  letter-spacing: -0.25px;
-  color: var(--text-strong);
-}
-
-.cartItemPrice {
-  font-weight: 900;
-  color: var(--text-strong);
-}
-
-.cartItemDesc {
-  margin-top: 6px;
-  font-size: 13px;
-  font-weight: 650;
-}
-
-.cartItemControls {
-  margin-top: 12px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-}
-
-.qty {
-  display: inline-flex;
-  align-items: center;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  border-radius: 14px;
-  overflow: hidden;
-}
-
-.qtyBtn {
-  width: 36px;
-  height: 34px;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  color: var(--text-strong);
-  font-weight: 900;
-  font-size: 18px;
-}
-
-.qtyBtn:hover {
-  background: var(--bg);
-}
-
-.qtyValue {
-  width: 36px;
-  text-align: center;
-  font-weight: 900;
-  color: var(--text-strong);
-}
-
-.linkBtn {
-  border: none;
-  background: transparent;
-  color: var(--text-strong);
-  font-weight: 800;
-  cursor: pointer;
-  padding: 8px 10px;
-  border-radius: 12px;
-}
-
-.linkBtn:hover {
-  background: var(--bg);
-}
-
-.cartFooter {
-  border-top: 1px solid var(--border);
-  padding: 14px 18px 18px;
-  display: grid;
-  gap: 12px;
-}
-
-.cartTotalRow {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 10px;
-}
-
-.cartTotal {
-  font-weight: 950;
-  color: var(--text-strong);
-  letter-spacing: -0.4px;
-  font-size: 18px;
-}
-
-.cartActions {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
 }
 
 .btn[disabled] {

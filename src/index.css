@@ -27,6 +27,10 @@ body {
   background: var(--bg);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 #app {
   min-height: 100svh;
 }
