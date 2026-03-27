@@ -1,5 +1,6 @@
 import './App.css'
-import { menu, features, gallery, brand } from './constants/data'
+import menu from './data/menu.json'
+import { features, gallery, brand } from './constants/data'
 import { useCart } from './hooks/useCart'
 import { CartPanel } from './cart/CartPanel'
 import { Header } from './components/Header'
@@ -25,7 +26,12 @@ export function App() {
       <main>
         <Hero />
         <FeaturesSection features={features} />
-        <MenuSection menu={menu} onAddToCart={cart.add} />
+        <MenuSection
+          menu={menu}
+          cartItems={cart.items}
+          onAddToCart={cart.add}
+          onSetQty={cart.setQty}
+        />
         <VisitSection gallery={gallery} />
         <ReviewsSection />
       </main>

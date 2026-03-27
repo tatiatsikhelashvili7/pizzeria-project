@@ -4,7 +4,11 @@ export function Header({ brand, cartCount, isCartOpen, onOpenCart }) {
   return (
     <header class="header">
       <div class="container nav">
-        <div class="brand">
+        <a
+          class="brand"
+          href="http://localhost:5175/"
+          aria-label={`Visit ${brand.nameTop}`}
+        >
           <span class="brandMark" aria-hidden="true">
             <img
               class="brandLogoImg"
@@ -17,7 +21,7 @@ export function Header({ brand, cartCount, isCartOpen, onOpenCart }) {
             />
           </span>
           <span class="brandName">{brand.nameTop}</span>
-        </div>
+        </a>
 
         <nav class="links" aria-label="Primary">
           <a href="#menu">Menu</a>

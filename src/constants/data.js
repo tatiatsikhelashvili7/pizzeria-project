@@ -1,21 +1,3 @@
-export const menu = [
-  {
-    name: 'Pesto Margherita',
-    desc: 'basil pesto, fresh mozzarella, slow-roasted tomatoes.',
-    price: '$12',
-  },
-  {
-    name: 'Creamy Truffle Mushroom',
-    desc: 'Garlic cream, roasted mushrooms, parsley, aged parmesan.',
-    price: '$15',
-  },
-  {
-    name: 'Spicy Pepperoni Classic',
-    desc: 'House tomato sauce, mozzarella, pepperoni, chili honey.',
-    price: '$14',
-  },
-]
-
 export const features = [
   {
     title: 'Hand-stretched dough',
