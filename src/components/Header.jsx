@@ -37,7 +37,10 @@ export function Header({ brand, cartCount, isCartOpen, onOpenCart }) {
           aria-haspopup="dialog"
           aria-expanded={isCartOpen}
         >
-          Cart
+          <span class="cartBtnEmoji" aria-hidden="true">
+            🛒
+          </span>
+          <span>Cart</span>
           {cartCount > 0 ? <span class="cartBadge">{cartCount}</span> : null}
         </button>
       </div>

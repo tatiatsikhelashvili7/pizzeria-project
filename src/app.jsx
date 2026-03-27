@@ -43,6 +43,7 @@ export function App() {
         total={cart.total}
         onClear={cart.clear}
         onSetQty={cart.setQty}
+        onCheckout={() => cart.clear()}
       />
 
       <Footer brand={brand} />
