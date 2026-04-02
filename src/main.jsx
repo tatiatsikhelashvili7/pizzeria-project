@@ -1,5 +1,16 @@
 import { render } from 'preact'
-import './index.css'
-import { App } from './app.jsx'
+import { Router, Route } from 'wouter'
+import '@/styles/index.css'
+import { Home } from '@/pages/Home'
+import { Menu } from '@/pages/Menu'
 
-render(<App />, document.getElementById('app'))
+function AppRouter() {
+  return (
+    <Router>
+      <Route path="/" component={Home} />
+      <Route path="/menu" component={Menu} />
+    </Router>
+  )
+}
+
+render(<AppRouter />, document.getElementById('app'))

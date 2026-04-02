@@ -1,0 +1,277 @@
+/* Pizza Customizer Modal Styles */
+
+.customizerOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  animation: fadeIn 0.2s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.customizerModal {
+  background: white;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.customizerHeader {
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.customizerHeader h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.customizerClose {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #999;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.customizerClose:hover {
+  background: #f5f5f5;
+  color: #333;
+}
+
+.customizerBody {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.customizerSection {
+  margin-bottom: 30px;
+}
+
+.customizerSection h3 {
+  margin: 0 0 15px 0;
+  font-size: 1.1rem;
+  color: #333;
+  font-weight: 600;
+}
+
+/* Size Options */
+.sizeOptions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.sizeOption {
+  flex: 1;
+  min-width: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.sizeOption input[type="radio"] {
+  margin-bottom: 8px;
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+}
+
+.sizeOption input[type="radio"]:checked {
+  accent-color: #d32f2f;
+}
+
+.sizeOption:has(input[type="radio"]:checked) {
+  border-color: #d32f2f;
+  background: #fff5f5;
+}
+
+.sizeOption:hover {
+  border-color: #d32f2f;
+}
+
+.sizeLabel {
+  font-weight: 600;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.sizePrice {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 4px;
+}
+
+/* Toppings Grid */
+.toppingGrid,
+.extraGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.toppingCheckbox,
+.extraCheckbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.toppingCheckbox input[type="checkbox"],
+.extraCheckbox input[type="checkbox"] {
+  margin-top: 2px;
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  accent-color: #d32f2f;
+}
+
+.toppingCheckbox:hover,
+.extraCheckbox:hover {
+  border-color: #d32f2f;
+  background: #fff5f5;
+}
+
+.toppingCheckbox:has(input[type="checkbox"]:checked),
+.extraCheckbox:has(input[type="checkbox"]:checked) {
+  border-color: #d32f2f;
+  background: #fff5f5;
+}
+
+.toppingLabel,
+.extraLabel {
+  flex: 1;
+  font-size: 0.9rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.toppingPrice,
+.extraPrice {
+  font-size: 0.8rem;
+  color: #d32f2f;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Footer */
+.customizerFooter {
+  padding: 20px;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.customizerPrice {
+  font-size: 1.1rem;
+  color: #666;
+}
+
+.customizerPrice strong {
+  color: #d32f2f;
+  font-size: 1.3rem;
+}
+
+.customizerAddBtn {
+  flex: 1;
+  padding: 12px 24px;
+  background: #d32f2f;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.customizerAddBtn:hover {
+  background: #b71c1c;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(211, 47, 47, 0.3);
+}
+
+.customizerAddBtn:active {
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .customizerModal {
+    max-height: 95vh;
+  }
+
+  .customizerBody {
+    padding: 15px;
+  }
+
+  .toppingGrid,
+  .extraGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .customizerFooter {
+    flex-direction: column;
+  }
+
+  .customizerAddBtn {
+    width: 100%;
+  }
+}

@@ -5,6 +5,16 @@ function priceToNumber(price) {
   return Number.isFinite(n) ? n : 0
 }
 
+function getItemKey(item) {
+  if (!item.customization) {
+    return item.name
+  }
+  
+  const { size = '', toppings = [], extras = [] } = item.customization
+  const customKey = [size, ...toppings, ...extras].join('|')
+  return `${item.name}::${customKey}`
+}
+
 export function useCart() {
   const [isOpen, setIsOpen] = useState(false)
   const [items, setItems] = useState(() => [])
@@ -37,7 +47,8 @@ export function useCart() {
 
   function add(menuItem) {
     setItems((prev) => {
-      const idx = prev.findIndex((x) => x.name === menuItem.name)
+      const itemKey = getItemKey(menuItem)
+      const idx = prev.findIndex((x) => getItemKey(x) === itemKey)
       if (idx === -1) return [...prev, { ...menuItem, qty: 1 }]
       return prev.map((x, i) => (i === idx ? { ...x, qty: x.qty + 1 } : x))
     })

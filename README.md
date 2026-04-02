@@ -52,11 +52,43 @@ npm run preview
 
 ## Project structure
 
-- `src/app.jsx`: app composition (wires constants + components + cart)
-- `src/components/`: UI sections (`Header`, `Hero`, `MenuSection`, etc.)
-- `src/hooks/`: reusable hooks (`useCart`)
-- `src/cart/`: cart UI (`CartPanel`) + cart styles
-- `src/constants/`: app data (`menu`, `features`, `gallery`, `brand`)
-- `src/utils/`: shared utilities (e.g. `fallbackIcon`)
-- `public/`: static files (favicons, etc.)
+After refactoring for production, the project now follows a scalable, modular architecture:
+
+```
+src/
+├── components/
+│   ├── common/              # Reusable header & footer
+│   │   ├── Header.jsx
+│   │   └── Footer.jsx
+│   ├── sections/            # Page sections
+│   │   ├── HeroSection.jsx
+│   │   ├── FeaturesSection.jsx
+│   │   ├── MenuSection.jsx
+│   │   ├── VisitSection.jsx
+│   │   └── ReviewsSection.jsx
+│   └── cart/                # Cart modal
+│       └── CartPanel.jsx
+├── pages/
+│   └── HomePage.jsx         # Main landing page
+├── hooks/
+│   └── useCart.js           # Cart state management
+├── data/
+│   ├── menu.json            # Menu items
+│   └── constants.js         # Brand, features, gallery
+├── services/                # API layer (ready for backend integration)
+├── utils/
+│   └── fallbackIcon.js      # Image fallback utility
+├── styles/
+│   └── index.css            # Consolidated global styles
+└── main.jsx                 # App entry point
+```
+
+### Key improvements:
+- **Better organization**: Components grouped by responsibility (common, sections, cart, pages)
+- **Absolute imports**: Use `@/` prefix for cleaner imports
+- **Modular components**: Extracted sub-components to reduce duplication
+- **Consolidated styling**: All CSS in one file for easier maintenance
+- **Future-ready**: Services folder prepared for API integration, pages folder ready for multi-page routing
+
+See [REFACTORING.md](REFACTORING.md) for detailed refactoring documentation.
 

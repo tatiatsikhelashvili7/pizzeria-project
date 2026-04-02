@@ -42,9 +42,8 @@ export const gallery = [
 ]
 
 export const brand = {
-  nameTop: 'Tatia’s Pizza',
-  nameFooter: 'Tatia’s Pizzeria',
+  nameTop: 'Tatia\'s Pizza',
+  nameFooter: 'Tatia\'s Pizzeria',
   logoSrc:
     'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=96&h=96&q=80',
 }
-
